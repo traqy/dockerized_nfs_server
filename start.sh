@@ -8,7 +8,7 @@ echo $SCRIPTPATH
 
 ipv4_regex="([0-9]{1,3}[\.]){3}[0-9]{1,3}"
 
-docker run -d --ip 172.17.0.2 --name ${DOCKERNAME} --privileged traqy/${DOCKERNAME} $@
+docker run -d --net acme-su-net --ip 172.18.0.2 --name ${DOCKERNAME} --privileged traqy/${DOCKERNAME} $@
 
 nfsip=`docker inspect ${DOCKERNAME} | grep -iw ipaddress | grep -Eo $ipv4_regex`
 
