@@ -1,11 +1,16 @@
 #!/bin/bash
 set -e
 
+DOCKERNAME=acme-oss-nfs-server
+SCRIPTPATH=`pwd`
+
+echo $SCRIPTPATH
+
 ipv4_regex="([0-9]{1,3}[\.]){3}[0-9]{1,3}"
 
-docker run -d --name mynfs --privileged docker.io/erezhorev/dockerized_nfs_server $@
+docker run -d --name ${DOCKERNAME} --privileged traqy/${DOCKERNAME} $@
 
-nfsip=`docker inspect mynfs | grep -iw ipaddress | grep -Eo $ipv4_regex`
+nfsip=`docker inspect ${DOCKERNAME} | grep -iw ipaddress | grep -Eo $ipv4_regex`
 
 # Source the script to populate MYNFSIP env var
 export MYNFSIP=$nfsip

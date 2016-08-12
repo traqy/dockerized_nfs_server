@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t docker.io/erezhorev/dockerized_nfs_server .
+docker build -t traqy/acme-oss-nfs-server .
